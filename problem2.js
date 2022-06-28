@@ -25,18 +25,20 @@ const listOfProducts = [{
   }
 ];
 
-const getUniquePrducts = () => {
-  let arr=[],obj={};
-  for(let i=0;i<listOfProducts.length;i++){
-    if(obj[listOfProducts[i].productName] === undefined){
-        obj[listOfProducts[i].productName] = 1;
-        arr.push(listOfProducts[i]);
-    }
-    else{
-        listOfProducts[i].quantity += listOfProducts[i].quantity
-        arr.push(listOfProducts[i])
-    }
-  }
-  console.log(arr)
+const getUniquePrducts = (list) => {
+    let newList=[]
+    list.forEach(element => {
+        let ifExists=newList.find((elem)=>elem.productName===element.productName);
+        if(ifExists){
+        newList= newList.map((product)=>{
+            if(product.productName===ifExists.productName){
+                product.quantity+=ifExists.quantity
+                return product
+            }else return product
+        })
+        }else newList.push(element)
+    });
+
+    console.log(newList)
 }
-getUniquePrducts()
+getUniquePrducts(listOfProducts);
