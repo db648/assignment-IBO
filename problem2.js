@@ -25,16 +25,18 @@ const listOfProducts = [{
   }
 ];
 
-const getUniqueProductCount = () => {
-  let obj={};
+const getUniquePrducts = () => {
+  let arr=[],obj={};
   for(let i=0;i<listOfProducts.length;i++){
     if(obj[listOfProducts[i].productName] === undefined){
         obj[listOfProducts[i].productName] = 1;
+        arr.push(listOfProducts[i]);
     }
     else{
-        obj[listOfProducts[i].productName] += 1;
+        listOfProducts[i].quantity += listOfProducts[i].quantity
+        arr.push(listOfProducts[i])
     }
   }
-  console.log(obj)
+  console.log(arr)
 }
-getUniqueProductCount()
+getUniquePrducts()
